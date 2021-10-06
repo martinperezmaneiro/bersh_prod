@@ -5,6 +5,10 @@ import re
 #base directory of the data files
 basedir = os.path.expandvars("$PWD/data")
 
+#directory of the output files (the production, config and jobs,
+#and the logs of the process
+out_dir = basedir +  "/output_files"
+
 #identifier of the data kind etc (part of the prod_filename)
 tag = "Tl208_NEW_v1_03_01_nexus_v5_03_04_"
 
