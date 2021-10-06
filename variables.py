@@ -67,6 +67,19 @@ def checkmakedir(path):
 		os.makedirs(path)
 		print('creating directory...\n' + path)
 
+#function to create the output directories
+def create_out_dirs():
+        proddir = basedir + out_dir + "/prod/"
+        jobsdir = basedir + out_dir + "/jobs/"
+        confdir = basedir + out_dir + "/config/"
+        logsdir = basedir + out_dir + "/logs/"
+        checkmakedir(jobsdir)
+        checkmakedir(confdir)
+        checkmakedir(logsdir)
+        for city in cities[1:]:
+                checkmakedir(proddir + city)
+        return proddir, jobsdir, confdir, logsdir
+
 ##############
 # INPUT FILES
 ##############
