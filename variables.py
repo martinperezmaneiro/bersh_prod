@@ -51,9 +51,9 @@ def check_filename_structure(filename):
     cutnum, num = get_cut_and_num(filename)
     
     assert len(name_parts) == len(prod_parts)
-    assert name_parts[0] == tag
-    assert name_parts[1] == "cut" + str(cutnum) + ".cdst"
-    assert name_parts[2] == str(num) + ".root.h5" 
+    assert name_parts[0]   == tag
+    assert name_parts[1]   == "cut" + str(cutnum) + ".cdst"
+    assert name_parts[2]   == str(num) + ".root.h5" 
 
 #function to check if a directory exists; if not, the function creates it
 def checkmakedir(path):
@@ -78,13 +78,16 @@ def create_out_dirs():
 
 proddir, jobsdir, confdir, logsdir = create_out_dirs()
 
+#This is the directory for the input files
+indir = proddir + cities[0]
+
 ##############
 # INPUT FILES
 ##############
 
 #takes all the .h5 files in the specified indir (which 
 #has the city of origin in it)
-files_in = glob.glob(proddir + cities[0] + "/*.h5")
+files_in = glob.glob(indir + "/*.h5")
 
 for f in files_in: 
 	check_filename_structure(f)
