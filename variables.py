@@ -59,6 +59,14 @@ def check_filename_structure(filename):
     assert name_parts[1] == "cut" + str(cutnum) + ".cdst"
     assert name_parts[2] == str(num) + ".root.h5" 
 
+#function to check if a directory exists; if not, the function creates it
+def checkmakedir(path):
+	if os.path.isdir(path):
+		print('hey, directory already exists!:\n' + path)
+	else:
+		os.makedirs(path)
+		print('creating directory...\n' + path)
+
 ##############
 # INPUT FILES
 ##############
