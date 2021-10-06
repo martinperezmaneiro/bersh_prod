@@ -47,6 +47,18 @@ def get_cut_and_num(filename):
 	cutnum = items[-1]
 	return cutnum, num
 
+#function to ensure that all the files have the correct structure
+#as the previous one, it is specific for the current data
+def check_filename_structure(filename):
+    name_parts = filename.split("/")[-1].rsplit("_", 2)
+    prod_parts = prod_filename.split("_")
+    cutnum, num = get_cut_and_num(filename)
+    
+    assert len(name_parts) == len(prod_parts)
+    assert name_parts[0] == tag
+    assert name_parts[1] == "cut" + str(cutnum) + ".cdst"
+    assert name_parts[2] == str(num) + ".root.h5" 
+
 ##############
 # INPUT FILES
 ##############
@@ -55,8 +67,8 @@ def get_cut_and_num(filename):
 #has the city of origin in it)
 files_in = glob.glob(indir.format(in_city = cities[1]) + "/*.h5")
 
-#maybe i should do a function to check that all the files in the last list 
-#agree with the name structure :)
+for f in files_in: 
+	check_filename_structure(f)
 
 #sorts all the files, first in the cut number and then in the number
 files_in = sorted(files_in, key = get_cut_and_num)
