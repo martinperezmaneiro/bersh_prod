@@ -3,24 +3,20 @@ import glob
 import re
 
 #base directory of the data files
-basedir = os.path.expandvars("$PWD/data")
-
-#directory of the output files (the production, config and jobs,
-#and the logs of the process
-out_dir = basedir +  "/output_files"
-
-#identifier of the data kind etc (part of the prod_filename)
-tag = "Tl208_NEW_v1_03_01_nexus_v5_03_04"
-
-#subdirectory where the files to be processed are located,
-#it changes depending on the last city of the origin data
-indir   = basedir + "/{in_city}_data/" 
- 
+basedir = os.path.expandvars("$PWD/data") 
 
 #origin city followed by cities to run
 #as Marija data is identified by "cdst", I will call esmeralda data as this
 #and the script will produce the same name structure changing cdst for beersheba
 cities  = ["cdst", "beersheba"] 
+
+#directory of the output files (the production, config and jobs,
+#and the logs of the process
+#in our case will also contain the origin files of the production
+out_dir = basedir +  "/output_files"
+
+#identifier of the data kind etc (part of the prod_filename)
+tag = "Tl208_NEW_v1_03_01_nexus_v5_03_04"
 
 #number of jobs to launch (max is 200 so we leave a couple free)
 queue_limit = 198
@@ -76,9 +72,11 @@ def create_out_dirs():
         checkmakedir(jobsdir)
         checkmakedir(confdir)
         checkmakedir(logsdir)
-        for city in cities[1:]:
+        for city in cities:
                 checkmakedir(proddir + city)
         return proddir, jobsdir, confdir, logsdir
+
+proddir, jobsdir, confdir, logsdir = create_out_dirs()
 
 ##############
 # INPUT FILES
@@ -86,7 +84,7 @@ def create_out_dirs():
 
 #takes all the .h5 files in the specified indir (which 
 #has the city of origin in it)
-files_in = glob.glob(indir.format(in_city = cities[1]) + "/*.h5")
+files_in = glob.glob(proddir + cities[0] + "/*.h5")
 
 for f in files_in: 
 	check_filename_structure(f)
