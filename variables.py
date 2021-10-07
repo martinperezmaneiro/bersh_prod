@@ -102,4 +102,4 @@ files_in = sorted(files_in, key = get_cut_and_num)
 #commands for CESGA
 queue_state_command = "squeue |grep usciempm |wc -l"
 joblaunch_command   = "sbatch {filename}"
-
+jobtime             = "24:00:00"

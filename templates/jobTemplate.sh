@@ -3,7 +3,7 @@
 #
 # TEMPLATE FOR IC PRODUCTIONS AT FT2
 #
-#SBATCH --time 24:00:00
+#SBATCH --time {jobtime}
 #SBATCH --job-name {jobname}
 #SBATCH --output {logfilename}
 #SBATCH --error  {errfilename}

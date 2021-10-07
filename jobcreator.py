@@ -48,6 +48,7 @@ if __name__ == "__main__":
 
 		with open(job, "w") as job_write:
 			job_write.write(job_file.format(
+                                                jobtime     = jobtime,
 						jobname     = "cut{cutnum}_{num}".format(cutnum = cutnum, num = num),
 						logfilename = "cut{cutnum}_{num}.log".format(cutnum = cutnum, num = num),
 						errfilename = "cut{cutnum}_{num}.err".format(cutnum = cutnum, num = num),
