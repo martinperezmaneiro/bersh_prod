@@ -66,10 +66,10 @@ def check_filename_structure(filename):
     prod_parts = prod_filename.split("_")
     cutnum, num = get_cut_and_num(filename)
     
-    assert len(name_parts) == len(prod_parts)
-    assert name_parts[0]   == tag
-    assert name_parts[1]   == "cut" + str(cutnum) + ".cdst"
-    assert name_parts[2]   == str(num) + ".root.h5" 
+    assert len(name_parts)               == len(prod_parts)
+    assert name_parts[0]                 == tag
+    assert name_parts[1].split(".")[0]   == "cut" + str(cutnum)
+    assert name_parts[2]                 == str(num) + ".root.h5" 
 
 #function to check if a directory exists; if not, the function creates it
 def checkmakedir(path):
