@@ -2,18 +2,34 @@ import os
 import glob
 import re
 
+'''
+DIRECTIONS:
+
+-We should check that the basedir is already created with the structure 
+certain_head_location/data/prod/input_city_name/all_input_data
+This has to be mentioned here as we will usually have this folder in the $LUSTRE directory,
+and the executables in the $HOME directory
+-We should locate the input files in the previous directory
+-The output folders will be created in the data folder
+-The cities variable should contain the names of the origin city and the ones 
+that we want to obtain
+-The directories of the templates should be also checked. We will usually locate them
+in the same directory as the python executables, in a folder /templates/
+This doesn't have to be like this, we can just specity the directory, but it is worth mention
+-Regarding the particular name of the files to be processed, the variable prod_filename and 
+the functions get_cut_and_num and check_filename_structure should be renewed to fit it.
+-REMEMBER to adapt the jobtime
+'''
+
 #base directory of the data files
+#this will contain the input (data to be processed) and the output (the processed data,
+#the configs and jobs, and the logs of the process). The folder prod will contain the
+#folder named as the city with the input data, and the output cities' folders will be
+#created
 basedir = os.path.expandvars("$PWD/data") 
 
 #origin city followed by cities to run
-#as Marija data is identified by "cdst", I will call esmeralda data as this
-#and the script will produce the same name structure changing cdst for beersheba
-cities  = ["cdst", "beersheba"] 
-
-#directory of the output files (the production, config and jobs,
-#and the logs of the process
-#in our case will also contain the origin files of the production
-out_dir = basedir +  "/output_files"
+cities  = ["esmeralda", "beersheba"] 
 
 #identifier of the data kind etc (part of the prod_filename)
 tag = "Tl208_NEW_v1_03_01_nexus_v5_03_04"
@@ -65,10 +81,10 @@ def checkmakedir(path):
 
 #function to create the output directories
 def create_out_dirs():
-        proddir = out_dir + "/prod/"
-        jobsdir = out_dir + "/jobs/"
-        confdir = out_dir + "/config/"
-        logsdir = out_dir + "/logs/"
+        proddir = basedir + "/prod/"
+        jobsdir = basedir + "/jobs/"
+        confdir = basedir + "/config/"
+        logsdir = basedir + "/logs/"
         checkmakedir(jobsdir)
         checkmakedir(confdir)
         checkmakedir(logsdir)

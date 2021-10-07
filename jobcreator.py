@@ -5,7 +5,7 @@ from variables import *
 
 city_input = dict(zip(cities[1:], cities[:-1]))
 
-filename_structure = "{dir}{city}/" + prod_filename #not bar between dir and city because dir already has the last \
+filename_structure = "{dir}{city}/" + prod_filename #not bar between dir and city because dir already has the last /
 
 if __name__ == "__main__":
 	
