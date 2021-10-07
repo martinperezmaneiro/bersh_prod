@@ -6,7 +6,7 @@ import re
 DIRECTIONS:
 
 -We should check that the basedir is already created with the structure 
-certain_head_location/data/prod/input_city_name/all_input_data
+basedir/prod/input_city_name/all_input_data
 This has to be mentioned here as we will usually have this folder in the $LUSTRE directory,
 and the executables in the $HOME directory
 -We should locate the input files in the previous directory
