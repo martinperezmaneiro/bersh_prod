@@ -5,7 +5,7 @@ from variables import *
 
 city_input = dict(zip(cities[1:], cities[:-1]))
 
-filename_structure = "{dir}/{city}/" + prod_filename
+filename_structure = "{dir}{city}/" + prod_filename #not bar between dir and city because dir already has the last \
 
 if __name__ == "__main__":
 	
@@ -17,8 +17,9 @@ if __name__ == "__main__":
 		city_commands = ""
 		
 		#check if the job already exists
-		job = jobsdir + f"cut{cutnum}_{num}.job"
-		if os.path.exists(job):
+		job = jobsdir + "cut{cutnum}_{num}.job".format(cutnum = cutnum, num = num)
+		
+		if os.path.exists(job): 
 			continue
 
 		#create job and config
@@ -32,24 +33,22 @@ if __name__ == "__main__":
 							num    = num)
 				file_out = filename_structure.format(
 							dir    = proddir,
-							city   = city
+							city   = city,
 							tag    = tag,
 							cutnum = cutnum,
 							num    = num)
 
 				config_temp = configTemp_dir + configTemp_filename.format(city = city)
 				config_file = open(config_temp).read() #opening the config template
-				config = confdir + city + f"_cut{cutnum}_{num}.conf"
+				config = confdir + city + "_cut{cutnum}_{num}.conf".format(cutnum = cutnum, num = num)
 				with open(config, "w") as config_write:
-					config_write.write(config_file.format(
-									file_in  = file_in,
-									file_out = file_out)
-				city_commands += f"city {city} {config}\n"
+					config_write.write(config_file.format(file_in  = file_in, file_out = file_out))
+				
+				city_commands += "city {city_name} {config_directory} \n".format(city_name = city, config_directory = config)
 
-				with open(job, "w") as job_write:
-					job_write.write(job_file.format(
-								jobname     = f"cut{cutnum}_{num}"
-								logfilename = f"cut{cutnum}_{num}.log"
-								errfilename = f"cut{cutnum}_{num}.err"
-								cities      = city_commands)
-
+		with open(job, "w") as job_write:
+			job_write.write(job_file.format(
+						jobname     = "cut{cutnum}_{num}".format(cutnum = cutnum, num = num),
+						logfilename = "cut{cutnum}_{num}.log".format(cutnum = cutnum, num = num),
+						errfilename = "cut{cutnum}_{num}.err".format(cutnum = cutnum, num = num),
+						cities      = city_commands))

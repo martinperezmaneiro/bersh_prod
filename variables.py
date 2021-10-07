@@ -65,10 +65,10 @@ def checkmakedir(path):
 
 #function to create the output directories
 def create_out_dirs():
-        proddir = basedir + out_dir + "/prod/"
-        jobsdir = basedir + out_dir + "/jobs/"
-        confdir = basedir + out_dir + "/config/"
-        logsdir = basedir + out_dir + "/logs/"
+        proddir = out_dir + "/prod/"
+        jobsdir = out_dir + "/jobs/"
+        confdir = out_dir + "/config/"
+        logsdir = out_dir + "/logs/"
         checkmakedir(jobsdir)
         checkmakedir(confdir)
         checkmakedir(logsdir)
@@ -99,4 +99,7 @@ files_in = sorted(files_in, key = get_cut_and_num)
 # JOB LAUNCH
 ##############
 
-#aqui cositas del job q hare luego
+#commands for CESGA
+queue_state_command = "squeue |grep usciempm |wc -l"
+joblaunch_command   = "sbatch {filename}"
+
