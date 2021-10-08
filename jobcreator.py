@@ -50,6 +50,6 @@ if __name__ == "__main__":
 			job_write.write(job_file.format(
                                                 jobtime     = jobtime,
 						jobname     = "cut{cutnum}_{num}".format(cutnum = cutnum, num = num),
-						logfilename = "cut{cutnum}_{num}.log".format(cutnum = cutnum, num = num),
-						errfilename = "cut{cutnum}_{num}.err".format(cutnum = cutnum, num = num),
+						logfilename = logsdir + "cut{cutnum}_{num}.log".format(cutnum = cutnum, num = num),
+						errfilename = logsdir + "cut{cutnum}_{num}.err".format(cutnum = cutnum, num = num),
 						cities      = city_commands))
