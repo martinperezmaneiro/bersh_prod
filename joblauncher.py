@@ -1,3 +1,5 @@
+import os
+import sys
 import glob
 import subprocess
 
@@ -7,6 +9,7 @@ from variables import get_cut_and_num
 from variables import queue_state_command
 from variables import joblaunch_command
 
+from time import sleep
 
 jobs = glob.glob(jobsdir + "/*")
 jobs = sorted(jobs, key = get_cut_and_num)
