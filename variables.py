@@ -37,6 +37,10 @@ tag = "Tl208_NEW_v1_03_01_nexus_v5_03_04"
 #number of jobs to launch (max is 200 so we leave a couple free)
 queue_limit = 198
 
+#database for the used detector
+#the different classes can be found in invisible_cities/database/load_db
+detector_db = 'new'
+
 #directories of the Templates for the configs and job
 jobTemp_dir    = os.path.expandvars("$PWD/templates/")
 configTemp_dir = os.path.expandvars("$PWD/templates/")
