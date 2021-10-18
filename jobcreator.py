@@ -42,7 +42,7 @@ if __name__ == "__main__":
 				config_file = open(config_temp).read() #opening the config template
 				config = confdir + city + "_cut{cutnum}_{num}.conf".format(cutnum = cutnum, num = num)
 				with open(config, "w") as config_write:
-					config_write.write(config_file.format(file_in  = file_in, file_out = file_out))
+					config_write.write(config_file.format(file_in  = file_in, file_out = file_out, detector_db = detector_db))
 				
 				city_commands += "city {city_name} {config_directory} \n".format(city_name = city, config_directory = config)
 
