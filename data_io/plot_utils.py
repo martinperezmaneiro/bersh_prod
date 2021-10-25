@@ -1,7 +1,8 @@
 import numpy as np
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib        as mpl
+from   mpl_toolkits.mplot3d import Axes3D
 
 def plot_3d_hits_double(hits, hits2, double = True, value='energy', coords = ['x', 'y', 'z'], cmap = mpl.cm.jet, value2 = 'E', coords2 = ['X', 'Y', 'Z'], opacity = 0.1, label1 = None, label2 = None):
     #Función para hacer plot de distintos hits de un mismo evento superponiéndose
